@@ -1,0 +1,46 @@
+@media print {
+
+    .navbar, .toolbar, .br2, .thanks, .no-print{
+        display: none;
+    }
+
+    .invoice-id, .invoice .invoice-to .to{
+        font-size: 15px;
+    }
+
+    .invoice table td, .invoice table th{
+        padding: 2px;
+    }
+
+    .card-header {
+        padding: 3px 1.25rem 3px;
+        margin-bottom: 0;
+        background-color: rgba(0,0,0,.03);
+        border: 0px;
+        border-bottom: 1px solid rgba(0,0,0,.03);
+    }
+
+    .card-block{
+        padding: 2px;
+        /* border: 0px; */
+    }
+    .card{
+        /* border:0px; */
+        padding-bottom: 3px;
+    }
+    
+    .invoice main{
+        padding-bottom: 5px;
+    }
+
+    .logo{
+        width: 80px; margin: 0px 10px 10px;
+    }
+
+    .invoice .company-details .name{
+        font-size: 15px;
+    }
+
+    @page { size: auto;  margin: 0mm; }
+
+}

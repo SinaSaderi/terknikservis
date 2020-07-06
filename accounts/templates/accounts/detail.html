@@ -1,0 +1,234 @@
+{% extends 'accounts/base.html' %}
+
+{% load static %}
+
+
+{% block content %}
+<header class="topbar no-print">
+  <div class="container">
+     <div class="row">
+        <div class="col-sm-12 col-md-6 header-top-left">
+           <div class="address-wrapper"> <span><i class="glyph-icon fi-interface-cursor-2"></i>Merkez mahallesi karatay sokak no:23/A arnavutköy istanbul</span> </div>
+        </div>
+        <div class="col-sm-12 col-md-6 header-top-right">
+           <ul class="mail-phone-wrapper">
+              <li> <span class="waves-effect waves-dark"><i class="glyph-icon fi-creative-email"></i>info@arnavutkoybilisim.com</span> </li>
+              <li> <span class="waves-effect waves-dark"><i class="glyph-icon fi-interface-telephone-2"></i>0212 597 80 90</span> </li>
+              <li> <span class="waves-effect waves-dark"><i class="glyph-icon fi-interface-telephone-3"></i>0 534 366 09 09</span> </li>
+           </ul>
+        </div>
+     </div>
+  </div>
+</header>
+<nav class="navbar navbar-expand-lg mx-background-top-linear">
+  <div class="container">
+     <a class="navbar-brand" href="https://arnavutkoybilisim.com/" style="text-transform: uppercase;"> <img src="https://arnavutkoybilisim.com/uploads/site_info/f4f694e3a8be4958f3407a917062dc22.png" alt="Arnavutköy Bilişim" title="Arnavutköy Bilişim"> <span>Arnavutköy<br>Bilişim</span> </a> <button class="navbar-toggler"> <span class="navbar-toggler-icon"></span> </button> 
+     <div class="navbar-collapse nav-slider" id="navbarResponsive">
+        <div class="nav-mask"></div>
+        <ul class="navbar-nav ml-auto">
+           <li class="nav-item"> <a href="https://arnavutkoybilisim.com" class="nav-link"> Anasayfa </a> </li>
+           <li class="nav-item"> <a href="/hakkimizda" class="nav-link"> Hakkımızda </a> </li>
+           <li class="nav-item"> <a href="/hizmetlerimiz" class="nav-link"> Hizmetlerimiz </a> </li>
+           <li class="nav-item"> <a href="https://arnavutkoybilisim.com/referanslar" class="nav-link"> Referanslar </a> </li>
+           <li class="nav-item"> <a href="https://arnavutkoybilisim.com/blog" class="nav-link"> Blog </a> </li>
+           <li class="nav-item"> <a href="https://arnavutkoybilisim.com/iletisim" class="nav-link"> İletişim </a> </li>
+        </ul>
+     </div>
+  </div>
+</nav>
+
+<!-- <div class="limiter">
+  <div class="container-100" style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url({% static 'accounts/images/bg-01.jpg' %});">
+    <div class="col-md-4">
+      <div class="text-white">
+        <img src="{% static 'accounts/images/profile.jpg' %}" class="icon" alt="profile-img" srcset="">
+      </div>
+    </div>
+
+    <div class="text-white">
+        Hi {{request.user.first_name }}  {{request.user.last_name }}<br>
+      <a class="text-white" href="{% url 'logout' %}">logout</a>
+    </div>
+
+    
+  </div>
+</div> -->
+
+
+
+<div id="invoice">
+
+  <div class="toolbar hidden-print">
+      <div class="text-right">
+          <button id="printInvoice" class="btn btn-info" onclick="window.print()"><i class="fa fa-print"></i> Yazdır</button>
+          <a href="{% url 'dashboard' %}" class="no-print"><button class="btn btn-secondary"><i class="fa fa-list"></i> Servisler</button></a>
+      </div>
+      <hr>
+  </div>
+  <div class="invoice overflow-auto">
+      <div style="min-width: 600px">
+          <header>
+              <div class="row" style="font-family: Poppins-Regular, sans-serif;">
+                  <div class="col">
+                        <a target="_blank" href="https://arnavutkoybilisim.com/" style="font-weight: bold;">
+                          <img src ="{% static 'accounts/images/logo.png' %}" class="logo" data-holder-rendered="true" >
+                        </a>
+                  </div>
+                  <div class="col company-details">
+                      <h2 class="name">
+                          <a target="_blank" href="https://arnavutkoybilisim.com/">
+                            Arnavutköy Bilişim
+                          </a>
+                      </h2>
+                      <div>Merkez mahallesi karatay sokak no:23/A arnavutköy istanbul</div>
+                      <div>0212 597 80 90</div>
+                      <div>info@arnavutkoybilisim.com</div>
+                  </div>
+              </div>
+          </header>
+          <main>
+              <div class="row contacts" style="font-family: Poppins-Regular, sans-serif;">
+                  <div class="col invoice-to">
+                      <div class="text-gray-light">KULLANICI BİLGİLERİ:</div>
+                      <h2 class="to">{{request.user.first_name }}  {{request.user.last_name }}</h2>
+                      <div class="address">{{request.user.address }}</div>
+                      <div class="email">{{request.user.email }}</div>
+                      <div class="email">{{request.user.mobile }}</div>
+                  </div>
+                  <div class="col invoice-details">
+                      <h1 class="invoice-id">Kayıt Numarası: {{service.register_number}}</h1>
+                      <div class="date"><b>Kayıt tarih: </b>{{service.created_at}}</div>
+                      <div class="date"><b>kayıt tarih </b>{{service.delivery_date}}</div>
+                      <div class="date"><b>Dururm: </b>{{service.status}}</div>
+                  </div>
+              </div>
+
+            <div class="row" style="font-family: Poppins-Regular, sans-serif;">
+                <div class="col-6">
+                    <div class="card  height" style="margin-bottom: 15px;">
+                        <div class="card-header">GÖRÜNÜM:</div>
+                        <div class="card-block" style="padding: 20px;">
+                            <p>
+                                {{service.init_comment|linebreaks}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card  height">
+                        <div class="card-header">PROBLEM TANIMI:</div>
+                        <div class="card-block" style="padding: 20px;">
+                            <p>
+                                {{service.problem|linebreaks}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" style="font-family: Poppins-Regular, sans-serif;">
+                    <div class="card  height" style="margin-bottom: 15px;">
+                        <div class="card-header">ÜRÜN BİLGİLERİ :</div>
+                        <div class="card-block" style="padding: 20px;">
+                            <p><label>Marka:</label> {{service.product.brand.title}}</p>
+                            <p><label>Ürün:</label> {{service.product.title}}</p>
+                            <p><label>Model/Renk:</label> {{service.model}}</p>
+                            <p><label>Seri numarası:</label> {{service.serial_number}}</p>
+                            <p><label>Kapasite:</label> {{service.capacity}}</p>
+                            <p><label>İmei numarası:</label> {{service.imei_number}}</p>
+                            <p>
+                                <label>Garanti:</label> 
+                                {% if service.warranty is None %}
+                                    Bilinmiyor
+                                {% else %}
+                                    {{ service.warranty|yesno:"Evet,Hayır" }}   
+                                {% endif %}
+                            </p>
+                            <p><label>İmei numarası:</label> {{service.imei_number}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br /><br class="br2" />
+              <table border="0" cellspacing="0" cellpadding="0" style="font-family: Poppins-Regular, sans-serif;">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th class="text-left">YAPILAN İŞLEM</th>
+                          <th class="text-right">ÜCRET</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for o in service.operations.all %}
+                      <tr>
+                          <td class="no" style="width: 40px;">{{o.pk}}</td>
+                          <td class="text-left">
+                             {{o.title}}
+                          </td>
+                          <td class="unit">
+                              {{o.amount}} TL
+                          </td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+                  <tr>
+                      <td style="background: #fff;">&nbsp;</td>
+                      <td style="background: #fff;">&nbsp;</td>
+                      <td style="background: #fff;">&nbsp;</td>
+                  </tr>
+                  <thead>
+                    <tr>
+                        <th>#</th>
+                        <th class="text-left">PARÇA</th>
+                        <th class="text-right">FİYAT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for o in service.pieces.all %}
+                    <tr>
+                        <td class="no" style="width: 40px;">{{o.pk}}</td>
+                        <td class="text-left">
+                           {{o.title}}
+                        </td>
+                        <td class="unit">
+                            {{o.price}} TL
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+                  <tfoot>
+                      <!-- <tr>
+                          <td>&nbsp;</td>
+                          <td>SUBTOTAL</td>
+                          <td>$5,200.00</td>
+                      </tr>
+                      <tr>
+                          <td>&nbsp;</td>
+                          <td>TAX 25%</td>
+                          <td>$1,300.00</td>
+                      </tr> -->
+                      <tr>
+                          <td>&nbsp;</td>
+                          <td>TOPLUM</td>
+                          <td>{{total}} TL</td>
+                      </tr>
+                  </tfoot>
+              </table>
+              
+          </main>
+          <div style="text-align: left; border-top: 1px solid #ccc; padding-top: 10px;">
+            <div class="notices">
+                <div class="notice">Ücretli bakımlarda servis ücreti tahsil edilmeden ve servis formu müşteri fişi olmadan teslimat yapılmaz.</div>
+                <div class="notice">Servis işlemleri sonucunda ürünün eski arıza düzeyine getirilmesi talep edilemez.</div>
+                <div class="notice">Müşteri, servise bıraktığı ünitenin üzerindeki verilerin yedeklenmiş olmasından sorumludur.</div>
+                <div class="notice">Servis işlemleri sırasında oluşabilecek zorunlu veri kayıplarından Renkal Servis sorumlu tutulamaz.</div>
+                <div class="notice">Servis süresi azami 20 iş günüdür.Teslim tarihinden başlayarak 90 gün içerisinde teslim alınmayan ürünlerden Renkal Servis sorumlu tutulamaz.</div>
+                <div class="notice">Bu formun kullanıcı tarafından imzalanması, ürünün sağlam ve çalışır durumda teslim alındığını belirtir.</div>
+            </div>
+        </div>
+      </div>
+      <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+      <div class="no-print"></div>
+  </div>
+</div>
+
+
+{% endblock content %}

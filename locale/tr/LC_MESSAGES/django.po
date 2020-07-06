@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-05 23:17+0000\n"
-"PO-Revision-Date: 2020-07-06 02:46+0430\n"
+"POT-Creation-Date: 2020-07-06 13:07+0000\n"
+"PO-Revision-Date: 2020-07-06 17:43+0430\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -18,7 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: apps/brand/models.py:5 apps/product/models.py:10 apps/status/models.py:5
+#: apps/brand/models.py:5 apps/product/models.py:10 apps/service/models.py:37
+#: apps/service/models.py:51 apps/status/models.py:5
 msgid "Title"
 msgstr "Başlık"
 
@@ -43,28 +44,69 @@ msgid "Serial number"
 msgstr "Seri numarası"
 
 #: apps/service/models.py:15
-msgid "Model number"
-msgstr "Model numarası"
+msgid "Register number"
+msgstr "Kayit numarası"
 
 #: apps/service/models.py:16
+msgid "Model/Color"
+msgstr "Model/Renk"
+
+#: apps/service/models.py:17
+msgid "Capacity"
+msgstr "Kapasite"
+
+#: apps/service/models.py:18
+msgid "Imei number"
+msgstr "İmei numarası"
+
+#: apps/service/models.py:19
+msgid "Warranty"
+msgstr "Garanti"
+
+#: apps/service/models.py:20
 msgid "Delivery date"
 msgstr "Teslim tarihi"
 
-#: apps/service/models.py:17
+#: apps/service/models.py:21
 msgid "Status"
 msgstr "Durum"
 
-#: apps/service/models.py:18
-msgid "Description"
-msgstr "Açıklama"
+#: apps/service/models.py:22
+msgid "Initial comment"
+msgstr "Görünüm"
 
-#: apps/service/models.py:26
+#: apps/service/models.py:23
+msgid "Problem"
+msgstr "Problem"
+
+#: apps/service/models.py:31 apps/service/models.py:36
+#: apps/service/models.py:50
 msgid "Service"
 msgstr "Servis"
 
-#: apps/service/models.py:27
+#: apps/service/models.py:32
 msgid "Services"
 msgstr "Servisler"
+
+#: apps/service/models.py:38 apps/service/models.py:52
+msgid "Price"
+msgstr "Fiyat"
+
+#: apps/service/models.py:44
+msgid "Operation"
+msgstr "İşlem"
+
+#: apps/service/models.py:45
+msgid "Operations"
+msgstr "İşlemler"
+
+#: apps/service/models.py:58
+msgid "Piece"
+msgstr "Parça"
+
+#: apps/service/models.py:59
+msgid "Pieces"
+msgstr "Parçalar"
 
 #: users/admin.py:16
 msgid "Personal info"
@@ -101,3 +143,6 @@ msgstr "Mail"
 #: users/models.py:52
 msgid "Website"
 msgstr "Site"
+
+#~ msgid "Model number"
+#~ msgstr "Model numarası"

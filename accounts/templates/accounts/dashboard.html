@@ -4,7 +4,40 @@
 
 
 {% block content %}
-<div class="limiter">
+<header class="topbar">
+  <div class="container">
+     <div class="row">
+        <div class="col-sm-12 col-md-6 header-top-left">
+           <div class="address-wrapper"> <span><i class="glyph-icon fi-interface-cursor-2"></i>Merkez mahallesi karatay sokak no:23/A arnavutköy istanbul</span> </div>
+        </div>
+        <div class="col-sm-12 col-md-6 header-top-right">
+           <ul class="mail-phone-wrapper">
+              <li> <span class="waves-effect waves-dark"><i class="glyph-icon fi-creative-email"></i>info@arnavutkoybilisim.com</span> </li>
+              <li> <span class="waves-effect waves-dark"><i class="glyph-icon fi-interface-telephone-2"></i>0212 597 80 90</span> </li>
+              <li> <span class="waves-effect waves-dark"><i class="glyph-icon fi-interface-telephone-3"></i>0 534 366 09 09</span> </li>
+           </ul>
+        </div>
+     </div>
+  </div>
+</header>
+<nav class="navbar navbar-expand-lg mx-background-top-linear">
+  <div class="container">
+     <a class="navbar-brand" href="https://arnavutkoybilisim.com/" style="text-transform: uppercase;"> <img src="https://arnavutkoybilisim.com/uploads/site_info/f4f694e3a8be4958f3407a917062dc22.png" alt="Arnavutköy Bilişim" title="Arnavutköy Bilişim"> <span>Arnavutköy<br>Bilişim</span> </a> <button class="navbar-toggler"> <span class="navbar-toggler-icon"></span> </button> 
+     <div class="navbar-collapse nav-slider" id="navbarResponsive">
+        <div class="nav-mask"></div>
+        <ul class="navbar-nav ml-auto">
+           <li class="nav-item"> <a href="https://arnavutkoybilisim.com" class="nav-link"> Anasayfa </a> </li>
+           <li class="nav-item"> <a href="/hakkimizda" class="nav-link"> Hakkımızda </a> </li>
+           <li class="nav-item"> <a href="/hizmetlerimiz" class="nav-link"> Hizmetlerimiz </a> </li>
+           <li class="nav-item"> <a href="https://arnavutkoybilisim.com/referanslar" class="nav-link"> Referanslar </a> </li>
+           <li class="nav-item"> <a href="https://arnavutkoybilisim.com/blog" class="nav-link"> Blog </a> </li>
+           <li class="nav-item"> <a href="https://arnavutkoybilisim.com/iletisim" class="nav-link"> İletişim </a> </li>
+        </ul>
+     </div>
+  </div>
+</nav>
+
+<!-- <div class="limiter">
   <div class="container-100" style="background-image: linear-gradient(rgba(0,0,0,.4), rgba(0,0,0,.4)), url({% static 'accounts/images/bg-01.jpg' %});">
     <div class="col-md-4">
       <div class="text-white">
@@ -18,6 +51,104 @@
     </div>
 
     
+  </div>
+</div> -->
+
+
+
+<div id="invoice">
+
+  <div class="toolbar hidden-print">
+      <div class="text-right">
+      </div>
+      <hr>
+  </div>
+  <div class="invoice overflow-auto">
+      <div style="min-width: 600px">
+          <header>
+              <div class="row">
+                  <div class="col">
+                      <a target="_blank" href="https://arnavutkoybilisim.com/" style="font-weight: bold;">
+                          <img src ="{% static 'accounts/images/logo.png' %}" style="width: 94px; margin: 0px 10px 30px 30px;" data-holder-rendered="true" >
+                          </a>
+                  </div>
+                  <div class="col company-details">
+                      <h2 class="name">
+                          <a target="_blank" href="https://arnavutkoybilisim.com/">
+                            Arnavutköy Bilişim
+                          </a>
+                      </h2>
+                      <div>Merkez mahallesi karatay sokak no:23/A arnavutköy istanbul</div>
+                      <div>0212 597 80 90</div>
+                      <div>info@arnavutkoybilisim.com</div>
+                  </div>
+              </div>
+          </header>
+          <main>
+              <div class="row contacts">
+                  <div class="col invoice-to">
+                      <div class="text-gray-light">KULLANICI BİLGİLERİ:</div>
+                      <h2 class="to">{{request.user.first_name }}  {{request.user.last_name }}</h2>
+                      <div class="address">{{request.user.address }}</div>
+                      <div class="email">{{request.user.email }}</div>
+                      <div class="email">{{request.user.mobile }}</div>
+                  </div>
+                  <div class="col invoice-details">
+                      <h1 class="invoice-id">Servisler</h1>
+                  </div>
+              </div>
+              <table border="0" cellspacing="0" cellpadding="0">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th class="text-left">AÇIKLAMA</th>
+                          <th class="text-left">Kayit numarası</th>
+                          <th class="text-left">Teslim tarihi</th>
+                          <th class="text-left">Durum</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {%for s in services %}
+                      <tr>
+                          <td class="no" style="width: 10px;">{{s.pk}}</td>
+                          <td class="text-left">
+                            <h3>
+                              <a href="{% url 'service-detail' pk=s.pk %}">
+                                {{s.product.brand}} {{s.product}}
+                              </a>
+                            </h3>
+                          </td>
+                          <td>{{s.register_number}}</td>
+                          <td>{{s.delivery_date}}</td>
+                          <td>{{s.status}}</td>
+                      </tr>
+                    {% endfor %} 
+                  </tbody>
+                  
+              </table>
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <div class="thanks">Dikkat!</div>
+              <div class="notices">
+                  <div>NOTICE:</div>
+                  <div class="notice">Ücretli bakımlarda servis ücreti tahsil edilmeden ve servis formu müşteri fişi olmadan teslimat yapılmaz.</div>
+                  <div class="notice">Servis işlemleri sonucunda ürünün eski arıza düzeyine getirilmesi talep edilemez.</div>
+                  <div class="notice">Müşteri, servise bıraktığı ünitenin üzerindeki verilerin yedeklenmiş olmasından sorumludur.</div>
+                  <div class="notice">Servis işlemleri sırasında oluşabilecek zorunlu veri kayıplarından Renkal Servis sorumlu tutulamaz.</div>
+                  <div class="notice">Servis süresi azami 20 iş günüdür.Teslim tarihinden başlayarak 90 gün içerisinde teslim alınmayan ürünlerden Renkal Servis sorumlu tutulamaz.</div>
+                  <div class="notice">Bu formun kullanıcı tarafından imzalanması, ürünün sağlam ve çalışır durumda teslim alındığını belirtir.</div>
+              </div>
+          </main>
+          <footer>
+              Invoice was created on a computer and is valid without the signature and seal.
+          </footer>
+      </div>
+      <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+      <div></div>
   </div>
 </div>
 
